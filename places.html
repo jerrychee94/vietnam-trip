@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Places | Vietnam Travel Planner</title>
+    <meta
+      name="description"
+      content="Browse 40+ tourist spots across Nha Trang, Da Lat, Hoi An, and Da Nang — curated for Malaysian travellers."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="places-page">
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Trip navigation">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">VN</span>
+          <span>
+            <strong>Coastline to Cloudline</strong>
+            <small>1-8 Aug 2026</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Site sections">
+          <a href="index.html">Overview</a>
+          <a href="places.html" class="active">Places</a>
+          <a href="tips.html">MY Tips</a>
+        </nav>
+
+        <div class="side-card">
+          <span class="label">Filter</span>
+          <div class="filter-chips" id="cityFilters"></div>
+        </div>
+
+        <div class="side-card compact">
+          <span class="label">Total spots</span>
+          <strong id="placeCount">—</strong>
+          <p>Tap a card to jump to Google reviews or images.</p>
+        </div>
+      </aside>
+
+      <main class="planner">
+        <header class="page-header">
+          <span class="eyebrow">Explore</span>
+          <h1>Places to visit</h1>
+          <p>
+            Attractions popular with Malaysian and Chinese travellers — sourced from
+            Vietnamstour packages, Klook MY, KKday, and Xiaohongshu collections.
+          </p>
+        </header>
+
+        <div id="placesContent"></div>
+      </main>
+    </div>
+
+    <script src="places-data.js"></script>
+    <script src="places-page.js"></script>
+  </body>
+</html>
