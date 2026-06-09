@@ -1,0 +1,17 @@
+{
+  "name": "@ai-labs-claude-skills/travel-planner",
+  "version": "1.0.0",
+  "description": "Claude AI skill: travel-planner",
+  "main": "index.js",
+  "files": [
+    "."
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "license": "MIT",
+  "author": "AI Labs"
+}
