@@ -4,6 +4,7 @@ import { ArrowRight, Plane } from "lucide-react";
 import DayCard, { TRIP_DAYS } from "../components/DayCard";
 import RouteMap from "../components/RouteMap";
 import SectionHeading from "../components/SectionHeading";
+import SummaryCarousel from "../components/SummaryCarousel";
 import { assetUrl } from "../utils/assetUrl";
 import { DAY_SHORT } from "../utils/places";
 
@@ -79,23 +80,7 @@ export default function OverviewPage() {
         </div>
       </section>
 
-      <section className="summary-grid" aria-label="Trip summary">
-        <article>
-          <span className="label">Start</span>
-          <strong>Kuala Lumpur → Cam Ranh</strong>
-          <p>Land 1 Aug 11:00. Mud bath same day; VinWonders full day on 2 Aug.</p>
-        </article>
-        <article>
-          <span className="label">Longest leg</span>
-          <strong>Da Lat → Hoi An</strong>
-          <p>Sleeper bus target window: about 10 hours overnight.</p>
-        </article>
-        <article>
-          <span className="label">Final full day</span>
-          <strong>Da Nang on 7 Aug</strong>
-          <p>Marble Mountains, My Khe Beach, Han River, and Dragon Bridge.</p>
-        </article>
-      </section>
+      <SummaryCarousel />
 
       <section className="workspace" id="itinerary">
         <div className="timeline-panel" aria-label="Day by day itinerary">

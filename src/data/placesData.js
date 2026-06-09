@@ -353,9 +353,6 @@ export const MY_TRAVEL_TIPS = {
   cautions: {
     title: "Avoid & be careful",
     items: [
-      "Seafood scams in Nha Trang — always confirm price per kg and total before they cook. Walk away if the menu has no clear prices.",
-      "Unmetered taxis at CXR airport — use Grab or a pre-booked transfer. Ignore touts quoting flat rates at the exit.",
-      "Motorbike damage scams in Hoi An — if you rent a bike, photograph every scratch before riding and avoid handing over your passport as deposit if possible.",
       "Crossing roads — traffic rarely stops for pedestrians. Cross slowly in a steady group; do not stop or run mid-road.",
       "Phone snatching — keep phones out of reach on Tran Phu promenade, night markets, and busy old-town streets. Use a cross-body bag in front.",
       "Sleeper bus valuables — keep passport, wallet, and phone on your body, not in the overhead rack. Lock the main bag and keep the key with you.",
@@ -365,9 +362,79 @@ export const MY_TRAVEL_TIPS = {
       "Tap water and ice — drink sealed bottled water only. Ask for drinks without ice at small stalls if unsure.",
       "Grab verification — check the plate number and driver photo before getting in. Share trip status with someone when travelling at night.",
       "Last-day timing — Da Nang airport is close, but still leave 2–3 hours before international flights. Morning traffic and check-in queues add up.",
-      "Currency counting — recount change at markets and when paying cash for tours. Large VND notes look similar — check the zeroes.",
-      "Booking pressure — ignore street agents selling “cheap” VinWonders, Ba Na Hills, or basket-boat tickets. Stick to Klook/KKday or hotel concierge.",
       "Overplanning Day 1 — you land at 11:00. Do not cram Po Nagar + mud bath + beach + big dinner. Mud bath alone is enough."
+    ]
+  },
+  scams: {
+    title: "Common scams in Vietnam",
+    items: [
+      "Seafood price trap (Nha Trang) — menu shows per-100g or per-kg prices that look cheap. Confirm total weight and final bill before they cook. Walk away if prices are vague.",
+      "Airport taxi touts (CXR/DAD) — ignore fixed-rate offers at the exit. Use Grab or a pre-booked hotel transfer only.",
+      "Motorbike damage scam (Hoi An) — rental shops claim new scratches on return. Photo/video every angle before you ride; use shops that accept cash deposit instead of keeping your passport.",
+      "Fake tour & ticket sellers — street agents sell “discounted” VinWonders, Ba Na Hills, or basket-boat tickets. Book via Klook/KKday or official counters only.",
+      "Hotel “closed” redirect — someone outside says your hotel moved or closed and offers a “better” one. Ignore them; go to your booked address and check in normally.",
+      "VND note confusion — 10,000₫ and 100,000₫ look similar. Count change slowly and say amounts out loud when paying large cash sums.",
+      "Cyclo / xe om overcharging — agree price in writing or on your phone before a cyclo or motorbike ride in Hoi An old town.",
+      "Bracelet / shoe-shine trick — someone ties a “free” bracelet or starts cleaning shoes then demands payment. Say “không” firmly and keep walking.",
+      "Fake police fines — plain-clothes “officers” ask for on-the-spot cash. Real police issue official paperwork; insist on going to a station if unsure.",
+      "Massage / billiards bait — very cheap signs outside, inflated bill inside. Check prices on the menu before entering; leave if they refuse to show one.",
+      "Duplicate menu scam — one menu shown when ordering, a higher-priced menu produced at payment. Take a photo of the menu you order from.",
+      "Pickpocket teams — one person distracts (map, dropped item), another lifts your bag. Stay alert in night markets and on crowded buses."
+    ]
+  },
+  emergency: {
+    title: "Emergency numbers",
+    contacts: [
+      { label: "Police", number: "113", note: "Theft, assault, traffic accidents" },
+      { label: "Fire brigade", number: "114", note: "Fire emergencies" },
+      { label: "Ambulance", number: "115", note: "Medical emergencies" },
+      { label: "Search & rescue", number: "112", note: "General emergency line (where available)" },
+      {
+        label: "Malaysian Embassy — Hanoi",
+        number: "+84 24 3733 3848",
+        note: "Mon–Fri office hours · 58–60 Tran Hung Dao"
+      },
+      {
+        label: "Malaysian Consulate — Ho Chi Minh City",
+        number: "+84 28 3827 2534",
+        note: "Covers southern & central Vietnam incl. Da Nang region"
+      },
+      {
+        label: "Tourist police — Nha Trang",
+        number: "+84 258 3522 112",
+        note: "Tran Phu / beach area assistance"
+      },
+      {
+        label: "Tourist police — Da Nang",
+        number: "+84 236 3791 979",
+        note: "Beach and city-centre tourist help"
+      }
+    ]
+  },
+  phrases: {
+    title: "Common Vietnamese words",
+    intro: "Locals appreciate any effort. Point to this list or use Google Translate camera mode for menus.",
+    words: [
+      { vi: "Xin chào", roman: "sin chow", en: "Hello" },
+      { vi: "Cảm ơn", roman: "gam un", en: "Thank you" },
+      { vi: "Không", roman: "khong", en: "No" },
+      { vi: "Vâng / Dạ", roman: "vung / ya", en: "Yes (polite)" },
+      { vi: "Xin lỗi", roman: "sin loy", en: "Sorry / excuse me" },
+      { vi: "Bao nhiêu tiền?", roman: "bow nyew tee-en", en: "How much?" },
+      { vi: "Đắt quá!", roman: "dat kwah", en: "Too expensive!" },
+      { vi: "Rẻ hơn được không?", roman: "reh hun du-ok khong", en: "Can it be cheaper?" },
+      { vi: "Tính tiền", roman: "tin tee-en", en: "Bill please" },
+      { vi: "Cay / Không cay", roman: "kai / khong kai", en: "Spicy / Not spicy" },
+      { vi: "Không đường", roman: "khong du-ong", en: "No sugar (coffee)" },
+      { vi: "Nước", roman: "nu-ok", en: "Water" },
+      { vi: "Cà phê", roman: "ka feh", en: "Coffee" },
+      { vi: "Phở", roman: "fur", en: "Pho noodle soup" },
+      { vi: "Cho tôi...", roman: "chor toy", en: "Give me / I'd like..." },
+      { vi: "Ở đâu?", roman: "ur dow", en: "Where is it?" },
+      { vi: "Nhà vệ sinh", roman: "nya veh sin", en: "Toilet" },
+      { vi: "Trái / Phải", roman: "chai / fai", en: "Left / Right" },
+      { vi: "Dừng lại", roman: "yu-ung lai", en: "Stop here (Grab/taxi)" },
+      { vi: "Ngon!", roman: "ngon", en: "Delicious!" }
     ]
   }
 };

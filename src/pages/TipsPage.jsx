@@ -9,11 +9,17 @@ import {
   UtensilsCrossed,
   Bus,
   Luggage,
-  ShieldAlert
+  ShieldAlert,
+  AlertTriangle,
+  Phone,
+  Languages
 } from "lucide-react";
 
 const TIP_ORDER = [
   "cautions",
+  "scams",
+  "emergency",
+  "phrases",
   "visa",
   "flights",
   "money",
@@ -25,6 +31,9 @@ const TIP_ORDER = [
 
 const TIP_ICONS = {
   cautions: ShieldAlert,
+  scams: AlertTriangle,
+  emergency: Phone,
+  phrases: Languages,
   visa: BadgeCheck,
   flights: Plane,
   money: Wallet,
@@ -33,6 +42,10 @@ const TIP_ICONS = {
   transport: Bus,
   packing: Luggage
 };
+
+function telHref(number) {
+  return `tel:${number.replace(/[^\d+]/g, "")}`;
+}
 
 const CHECKLIST = [
   "KUL → CXR flight (1 Aug, land ~11:00)",
@@ -96,8 +109,60 @@ export default function TipsPage() {
           const section = MY_TRAVEL_TIPS[key];
           if (!section) return null;
           const Icon = TIP_ICONS[key] || BadgeCheck;
+          const cardClass = [
+            "tip-card",
+            key === "cautions" || key === "scams" ? " tip-card--caution" : "",
+            key === "emergency" ? " tip-card--emergency" : "",
+            key === "phrases" ? " tip-card--phrases" : ""
+          ].join("");
+
+          if (key === "emergency" && section.contacts) {
+            return (
+              <article key={key} className={cardClass}>
+                <div className="tip-card-head">
+                  <Icon size={22} aria-hidden="true" />
+                  <h3>{section.title}</h3>
+                </div>
+                <ul className="emergency-list">
+                  {section.contacts.map((contact) => (
+                    <li key={contact.label}>
+                      <div className="emergency-list__meta">
+                        <strong>{contact.label}</strong>
+                        <a href={telHref(contact.number)} className="emergency-list__number">
+                          {contact.number}
+                        </a>
+                      </div>
+                      {contact.note && <p>{contact.note}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          }
+
+          if (key === "phrases" && section.words) {
+            return (
+              <article key={key} className={cardClass}>
+                <div className="tip-card-head">
+                  <Icon size={22} aria-hidden="true" />
+                  <h3>{section.title}</h3>
+                </div>
+                {section.intro && <p className="tip-card-intro">{section.intro}</p>}
+                <div className="phrase-grid">
+                  {section.words.map((word) => (
+                    <div key={word.vi} className="phrase-row">
+                      <strong className="phrase-vi">{word.vi}</strong>
+                      <span className="phrase-roman">{word.roman}</span>
+                      <span className="phrase-en">{word.en}</span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            );
+          }
+
           return (
-            <article key={key} className={`tip-card${key === "cautions" ? " tip-card--caution" : ""}`}>
+            <article key={key} className={cardClass}>
               <div className="tip-card-head">
                 <Icon size={22} aria-hidden="true" />
                 <h3>{section.title}</h3>
