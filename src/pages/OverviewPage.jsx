@@ -5,6 +5,7 @@ import DayCard, { TRIP_DAYS } from "../components/DayCard";
 import RouteMap from "../components/RouteMap";
 import SectionHeading from "../components/SectionHeading";
 import { assetUrl } from "../utils/assetUrl";
+import { DAY_SHORT } from "../utils/places";
 
 export default function OverviewPage() {
   useEffect(() => {
@@ -23,6 +24,9 @@ export default function OverviewPage() {
 
         cards.forEach((card) => card.classList.toggle("active-day", card === visible.target));
         navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${visible.target.id}`);
+        });
+        document.querySelectorAll(".day-jump-bar a").forEach((link) => {
           link.classList.toggle("active", link.getAttribute("href") === `#${visible.target.id}`);
         });
       },
@@ -96,6 +100,16 @@ export default function OverviewPage() {
       <section className="workspace" id="itinerary">
         <div className="timeline-panel" aria-label="Day by day itinerary">
           <SectionHeading eyebrow="Itinerary board" title="Day-by-day plan" />
+
+          <nav className="day-jump-bar" aria-label="Jump to day">
+            {TRIP_DAYS.map((day) => (
+              <a key={day.day} href={`#day-${day.day}`}>
+                <strong>{day.day}</strong>
+                <span>{DAY_SHORT[day.day - 1]}</span>
+              </a>
+            ))}
+          </nav>
+
           {TRIP_DAYS.map((day) => (
             <DayCard key={day.day} day={day} />
           ))}

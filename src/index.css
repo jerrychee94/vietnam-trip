@@ -485,24 +485,30 @@ h1 em {
   max-width: 60ch;
 }
 
-/* Day cards */
+/* Day cards — mobile-first */
 .day-card {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: 16px;
-  padding: 18px;
-  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
-  scroll-margin-top: 24px;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  scroll-margin-top: 88px;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
 .day-card.active-day {
   border-color: var(--color-secondary);
-  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.12), var(--shadow-md);
+  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.14), var(--shadow-md);
+}
+
+.day-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
 }
 
 .day-date {
@@ -510,6 +516,9 @@ h1 em {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  min-width: 64px;
+  min-height: 64px;
   padding: 10px;
   border-radius: var(--radius-sm);
   background: var(--color-muted-bg);
@@ -518,65 +527,122 @@ h1 em {
 
 .day-date strong {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   line-height: 1;
   color: var(--color-primary);
 }
 
 .day-date span {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--color-muted);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.day-topline {
-  display: flex;
-  flex-wrap: wrap;
+.day-head-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.city-tag {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.day-topline h3 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.detail-pill {
-  min-height: 36px;
-  padding: 8px 14px;
+  min-height: 28px;
+  padding: 4px 10px;
+  margin-bottom: 8px;
   border-radius: var(--radius-pill);
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform var(--transition), opacity var(--transition);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.detail-pill:hover {
-  transform: translateY(-1px);
-}
-
-.detail-pill.sea {
-  background: rgba(8, 145, 178, 0.12);
+.city-tag.sea {
+  background: rgba(8, 145, 178, 0.14);
   color: var(--sea);
 }
 
-.detail-pill.pine {
-  background: rgba(5, 150, 105, 0.12);
+.city-tag.pine {
+  background: rgba(5, 150, 105, 0.14);
   color: var(--pine);
 }
 
-.detail-pill.lantern {
-  background: rgba(234, 88, 12, 0.12);
+.city-tag.lantern {
+  background: rgba(234, 88, 12, 0.14);
   color: var(--lantern);
 }
 
-.detail-pill.city {
-  background: rgba(37, 99, 235, 0.12);
+.city-tag.city {
+  background: rgba(37, 99, 235, 0.14);
   color: var(--city);
+}
+
+.day-head-copy h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 4vw, 1.25rem);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.day-open-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-primary);
+  box-shadow: 0 10px 28px rgba(234, 88, 12, 0.32);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.day-open-btn:active {
+  transform: scale(0.98);
+}
+
+.day-open-btn:focus-visible {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .day-open-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+  }
+}
+
+.day-open-btn.sea {
+  background: linear-gradient(135deg, #0891b2, #0e7490);
+  box-shadow: 0 10px 28px rgba(8, 145, 178, 0.32);
+}
+
+.day-open-btn.pine {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 10px 28px rgba(5, 150, 105, 0.32);
+}
+
+.day-open-btn.lantern {
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  box-shadow: 0 10px 28px rgba(234, 88, 12, 0.32);
+}
+
+.day-open-btn.city {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.32);
+}
+
+.day-jump-bar {
+  display: none;
 }
 
 .schedule {
@@ -584,24 +650,49 @@ h1 em {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 
 .schedule li {
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-columns: 72px minmax(0, 1fr);
   gap: 12px;
-  font-size: 0.92rem;
+  align-items: start;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: rgba(253, 244, 240, 0.55);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .schedule time {
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-primary);
   font-variant-numeric: tabular-nums;
+  font-size: 0.88rem;
 }
 
 .schedule span {
-  color: var(--color-muted);
+  color: var(--color-foreground);
+}
+
+@media (min-width: 769px) {
+  .day-card {
+    padding: 20px;
+  }
+
+  .day-open-btn {
+    width: fit-content;
+    min-width: 220px;
+  }
+
+  .schedule li {
+    background: transparent;
+    border-color: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
 }
 
 /* Map */
@@ -1566,6 +1657,81 @@ h1 em {
   .tip-card--caution ul {
     grid-template-columns: 1fr;
   }
+
+  .day-jump-bar {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin: 0 0 16px;
+    padding: 10px 0 12px;
+    background: linear-gradient(180deg, var(--color-background) 70%, transparent);
+    scrollbar-width: none;
+  }
+
+  .day-jump-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .day-jump-bar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    min-width: 56px;
+    min-height: 52px;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-foreground);
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  }
+
+  .day-jump-bar a strong {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--color-primary);
+  }
+
+  .day-jump-bar a span {
+    margin-top: 4px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .day-jump-bar a.active,
+  .day-jump-bar a:hover {
+    border-color: var(--color-secondary);
+    background: rgba(8, 145, 178, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .timeline-panel {
+    min-width: 0;
+  }
+
+  .map-panel {
+    order: 2;
+  }
+
+  .quick-actions a {
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1607,6 +1773,7 @@ h1 em {
   .hero-actions .btn {
     width: 100%;
     justify-content: center;
+    min-height: 52px;
   }
 
   .flight-card {
@@ -1616,27 +1783,23 @@ h1 em {
     width: auto;
   }
 
-  .schedule li,
+  .schedule li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
   .schedule-list p {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 6px;
   }
 
   .day-card {
-    grid-template-columns: 1fr;
-    padding: 16px;
+    padding: 14px;
   }
 
-  .day-topline {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .day-date {
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 10px;
-    width: fit-content;
+  .day-open-btn {
+    min-height: 56px;
+    font-size: 1.02rem;
   }
 
   .budget-banner ul {
@@ -1648,7 +1811,7 @@ h1 em {
   }
 
   .leaflet-map-wrap {
-    height: 260px;
+    height: 240px;
   }
 
   .map-readout {
@@ -1666,6 +1829,14 @@ h1 em {
 
   .page-header h2 {
     font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  .summary-grid article {
+    padding: 16px;
+  }
+
+  .place-card-body h3 {
+    font-size: 1.05rem;
   }
 }
 

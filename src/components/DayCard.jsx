@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Compass, Lightbulb } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { TRIP_DAYS } from "../data/tripData";
 import { DAY_SHORT, CITY_THEME } from "../utils/places";
 import LinkPlaces from "./LinkPlaces";
@@ -62,29 +62,37 @@ export default function DayCard({ day, active = false }) {
   const schedule = SCHEDULES[day.day] || day.timeline.slice(0, 5).map(([time, text]) => [time, text]);
 
   return (
-    <article className={`day-card${active ? " active-day" : ""}`} id={`day-${day.day}`} data-city={day.city}>
-      <div className="day-date">
-        <strong>{day.day}</strong>
-        <span>{DAY_SHORT[day.day - 1]} Aug</span>
-      </div>
-      <div className="day-body">
-        <div className="day-topline">
-          <h3>{day.title}</h3>
-          <Link className={`detail-pill ${theme}`} to={`/day/${day.day}`}>
-            Open day
-          </Link>
+    <article
+      className={`day-card day-card--${theme}${active ? " active-day" : ""}`}
+      id={`day-${day.day}`}
+      data-city={day.city}
+    >
+      <div className="day-card-head">
+        <div className="day-date" aria-hidden="true">
+          <strong>{day.day}</strong>
+          <span>{DAY_SHORT[day.day - 1]} Aug</span>
         </div>
-        <ul className="schedule">
-          {schedule.map(([time, text]) => (
-            <li key={time}>
-              <time>{time}</time>
-              <span>
-                <LinkPlaces text={text} />
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div className="day-head-copy">
+          <span className={`city-tag ${theme}`}>{day.city}</span>
+          <h3>{day.title}</h3>
+        </div>
       </div>
+
+      <Link className={`day-open-btn ${theme}`} to={`/day/${day.day}`}>
+        View Day {day.day} plan
+        <ArrowRight size={18} aria-hidden="true" />
+      </Link>
+
+      <ul className="schedule">
+        {schedule.map(([time, text]) => (
+          <li key={time}>
+            <time dateTime={time}>{time}</time>
+            <span>
+              <LinkPlaces text={text} />
+            </span>
+          </li>
+        ))}
+      </ul>
     </article>
   );
 }
