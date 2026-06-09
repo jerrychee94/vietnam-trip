@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Menu, X, Map, Compass, Lightbulb, CalendarDays } from "lucide-react";
+import { Menu, X, Map, Compass, Lightbulb, CalendarDays, LayoutGrid } from "lucide-react";
 import { TRIP_DAYS } from "../data/tripData";
 import { DAY_SHORT } from "../utils/places";
 
@@ -10,12 +10,28 @@ const MAIN_NAV = [
   { to: "/tips", label: "MY Tips", icon: Lightbulb }
 ];
 
+const BOTTOM_NAV = [
+  { to: "/", label: "Home", icon: Compass, end: true },
+  { to: "/places", label: "Places", icon: Map },
+  { to: "/tips", label: "Tips", icon: Lightbulb },
+  { action: "menu", label: "Menu", icon: LayoutGrid }
+];
+
 export default function AppShell() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const isOverview = location.pathname === "/";
   const activeDayMatch = location.pathname.match(/^\/day\/(\d+)/);
   const activeDay = activeDayMatch ? Number(activeDayMatch[1]) : null;
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.classList.toggle("nav-open", mobileOpen);
+    return () => document.body.classList.remove("nav-open");
+  }, [mobileOpen]);
 
   return (
     <div className="app-shell">
@@ -119,6 +135,36 @@ export default function AppShell() {
       <main className="planner">
         <Outlet />
       </main>
+
+      <nav className="mobile-bottom-nav" aria-label="Mobile quick navigation">
+        {BOTTOM_NAV.map((item) => {
+          const Icon = item.icon;
+          if (item.action === "menu") {
+            return (
+              <button
+                key={item.label}
+                type="button"
+                className={`mobile-bottom-link${mobileOpen ? " active" : ""}`}
+                onClick={() => setMobileOpen(true)}
+              >
+                <Icon size={20} aria-hidden="true" />
+                <span>{item.label}</span>
+              </button>
+            );
+          }
+          return (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) => `mobile-bottom-link${isActive ? " active" : ""}`}
+            >
+              <Icon size={20} aria-hidden="true" />
+              <span>{item.label}</span>
+            </NavLink>
+          );
+        })}
+      </nav>
     </div>
   );
 }

@@ -79,7 +79,13 @@ export default function RouteMap() {
       </div>
 
       <div className="leaflet-map-wrap">
-        <MapContainer center={mapCenter} zoom={7} scrollWheelZoom={false} className="route-leaflet-map">
+        <MapContainer
+          center={mapCenter}
+          zoom={7}
+          scrollWheelZoom={false}
+          touchZoom
+          className="route-leaflet-map"
+        >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
